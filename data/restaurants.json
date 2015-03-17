@@ -1,4 +1,28 @@
-{
+/*var restaurantsQuery =
+    '[out:json];' +
+    'area' +
+    '   ["name"="Grenoble"]' +
+    '   ["type"="boundary"]' +
+    '   ["admin_level"="7"];' +
+    'node(area)' +
+    '   ["amenity"~"bar|cafe|fast_food|pub|restaurant"];' +
+    'out body;';
+
+var restaurantsUrl = 'http://overpass-api.de/api/interpreter?data=' + encodeURIComponent(restaurantsQuery);
+
+var restaurantsRequest = new XMLHttpRequest();
+restaurantsRequest.onreadystatechange = function () {
+    if (restaurantsRequest.readyState == 4 && restaurantsRequest.status == 200) {
+        loadRestaurants(JSON.parse(restaurantsRequest.responseText));
+    }
+};
+
+restaurantsRequest.open('GET', restaurantsUrl, true);
+restaurantsRequest.send();
+
+return;*/
+
+loadRestaurants({
   "version": 0.6,
   "generator": "Overpass API",
   "osm3s": {
@@ -14609,4 +14633,4 @@
 }
 
   ]
-}
+});

@@ -1,4 +1,33 @@
-{
+/*var parkingsQuery =
+    '[out:json];' +
+    'area' +
+    '    ["name"="Grenoble"]' +
+    '    ["type"="boundary"]' +
+    '    ["admin_level"="7"];' +
+    '(' +
+    '    node(area)' +
+    '        ["amenity"="parking"];' +
+    '    way' +
+    '        ["amenity"="parking"]' +
+    '        (44.93661287504354,5.532989501953125,45.31256326358576,5.9710693359375);' +
+    ');' +
+    'out body center;';
+
+var parkingsUrl = 'http://overpass-api.de/api/interpreter?data=' + encodeURIComponent(parkingsQuery);
+
+var parkingsRequest = new XMLHttpRequest();
+parkingsRequest.onreadystatechange = function () {
+    if (parkingsRequest.readyState == 4 && parkingsRequest.status == 200) {
+        loadParkings(JSON.parse(parkingsRequest.responseText));
+    }
+};
+
+parkingsRequest.open('GET', parkingsUrl, true);
+parkingsRequest.send();
+
+return;*/
+
+loadParkings({
   "version": 0.6,
   "generator": "Overpass API",
   "osm3s": {
@@ -37506,4 +37535,4 @@
 }
 
   ]
-}
+});
