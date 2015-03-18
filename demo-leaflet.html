@@ -32,6 +32,7 @@
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
+        //var markers = L.layerGroup().addTo(map);
         var markers = L.markerClusterGroup().addTo(map);
 
         var heatmapLayer = new HeatmapOverlay({
@@ -51,10 +52,29 @@
         function loadRestaurants(restaurants) {
             console.log('Restaurants: ', restaurants);
 
+            /*restaurants.elements.forEach(function (element) {
+                markers.addLayer(
+                    L.marker([element.lat, element.lon], {
+                        icon: L.icon({
+                            iconUrl: 'img/' + element.tags.amenity + '.png',
+                            iconSize: [32, 37],
+                            iconAnchor: [16, 37],
+                            popupAnchor: [0, -37]
+                        })
+                    }).bindPopup(element.tags.name)
+                );
+            });*/
+
             markers.addLayers(
                 restaurants.elements.map(function (element) {
-                    return L.marker([element.lat, element.lon])
-                        .bindPopup(element.tags.name);
+                    return L.marker([element.lat, element.lon], {
+                        icon: L.icon({
+                            iconUrl: 'img/' + element.tags.amenity + '.png',
+                            iconSize: [32, 37],
+                            iconAnchor: [16, 37],
+                            popupAnchor: [0, -37]
+                        })
+                    }).bindPopup(element.tags.name);
                 })
             );
         }
