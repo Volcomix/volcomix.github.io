@@ -6,6 +6,7 @@
         <input type="color" value="{{pipoupColor}}" />
         <input type="text" id="pipoupInput" value="{{pipoup}}" />
         <button on-click="{{clear}}">Vider</button>
+        <button on-click="{{focus}}">Focus</button>
     </template>
     <script>
         Polymer({
@@ -14,7 +15,11 @@
             },
 
             clear: function () {
-                this.$.pipoupInput.value = '';
+                this.pipoup = '';
+            },
+
+            focus: function () {
+                this.$.pipoupInput.focus();
             }
         });
     </script>
