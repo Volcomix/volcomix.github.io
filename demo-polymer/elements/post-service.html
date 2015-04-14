@@ -1,0 +1,8 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/core-ajax/core-ajax.html">
+
+<polymer-element name="post-service" attributes="posts" hidden noscript>
+    <template>
+        <core-ajax url="../data/posts.json" auto handleAs="json" response={{posts}}></core-ajax>
+    </template>
+</polymer-element>

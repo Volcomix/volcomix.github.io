@@ -1,0 +1,49 @@
+[{
+    "uid": 1,
+    "text": "Have you heard about the Web Components revolution?",
+    "username": "Eric",
+    "avatar": "http://upload.wikimedia.org/wikipedia/commons/7/73/Syndiotactic_polypropene.png",
+    "favorite": false
+}, {
+    "uid": 2,
+    "text": "Loving this Polymer thing.",
+    "username": "Rob",
+    "avatar": "http://nebulouszone.com/wp-content/uploads/2011/01/polymer-4.jpg",
+    "favorite": false
+}, {
+    "uid": 3,
+    "text": "So last year...",
+    "username": "Dimitri",
+    "avatar": "http://www.chm.bris.ac.uk/pt/polymer/images/finalyearprojects/complex.jpg",
+    "favorite": false
+}, {
+    "uid": 4,
+    "text": "Pretty sure I came up with that first.",
+    "username": "Ada",
+    "avatar": "http://upload.wikimedia.org/wikipedia/commons/0/0a/Plasma_Polymer_Ethylene_Film.png",
+    "favorite": false
+}, {
+    "uid": 5,
+    "text": "Yo, I heard you like components, so I put a component in your component.",
+    "username": "Grace",
+    "avatar": "http://www.alpha-polymers.com/ESW/Images/polymer2_2892.png",
+    "favorite": false
+}, {
+    "uid": 6,
+    "text": "Centralize, centrailize.",
+    "username": "John",
+    "avatar": "http://scienceforum.utk.edu/wp-content/blogs.dir/128/files/2014/01/Dr.-Jimmy-Mayes-Changing-the-World-with-Polymer-Chemistry_UTSF-January-24.jpg",
+    "favorite": false
+}, {
+    "uid": 7,
+    "text": "Has anyone seen my cat?",
+    "username": "Zelda",
+    "avatar": "http://1.imimg.com/data/O/Z/MY-1445896/pro6_250x250.jpg",
+    "favorite": false
+}, {
+    "uid": 8,
+    "text": "Decentralize!",
+    "username": "Norbert",
+    "avatar": "http://4.bp.blogspot.com/-sGHAta2TI2w/Tf9CqTad5hI/AAAAAAAAACE/90tg02_s330/s1600/Polymer.gif",
+    "favorite": false
+}]
