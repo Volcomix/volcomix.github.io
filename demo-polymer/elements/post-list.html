@@ -2,7 +2,7 @@
 <link rel="import" href="post-service.html">
 <link rel="import" href="post-card.html">
 
-<polymer-element name="post-list" noscript>
+<polymer-element name="post-list" noscript attributes="show">
     <template>
         <style>
             :host {
@@ -20,7 +20,7 @@
         <div layout vertical center>
 
             <template repeat="{{post in posts}}">
-                <post-card>
+                <post-card favorite={{post.favorite}} hidden?="{{show == 'favorites' && !post.favorite}}">
                     <img src="{{post.avatar}}" width="70" height="70">
                     <h2>{{post.username}}</h2>
                     <p>{{post.text}}</p>
