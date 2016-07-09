@@ -1,9 +1,17 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as React from 'react'
+import { render } from 'react-dom'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 
-import { Hello } from './components/Hello';
+import loggedIn from './reducers'
 
-ReactDOM.render(
-    <Hello compiler='TypeScript' framework='React' />,
+import App from './containers/App'
+
+let store = createStore(loggedIn)
+
+render(
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.getElementById('example')
-);
+)
