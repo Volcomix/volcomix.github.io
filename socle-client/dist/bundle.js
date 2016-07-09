@@ -50,7 +50,7 @@
 	var redux_1 = __webpack_require__(3);
 	var react_redux_1 = __webpack_require__(17);
 	var reducers_1 = __webpack_require__(26);
-	var App_1 = __webpack_require__(27);
+	var App_1 = __webpack_require__(28);
 	var store = redux_1.createStore(reducers_1.default);
 	react_dom_1.render(React.createElement(react_redux_1.Provider, {store: store}, React.createElement(App_1.default, null)), document.getElementById('root'));
 
@@ -1746,18 +1746,19 @@
 
 /***/ },
 /* 26 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var actions_1 = __webpack_require__(27);
 	var loggedIn = function (state, action) {
 	    if (state === void 0) { state = { loggedIn: false }; }
 	    switch (action.type) {
-	        case 'LOGIN':
+	        case actions_1.ActionTypes.LOGIN:
 	            return {
 	                loggedIn: true,
 	                username: action.username
 	            };
-	        case 'LOGOUT':
+	        case actions_1.ActionTypes.LOGOUT:
 	            return { loggedIn: false };
 	        default:
 	            return state;
@@ -1769,13 +1770,32 @@
 
 /***/ },
 /* 27 */
+/***/ function(module, exports) {
+
+	"use strict";
+	(function (ActionTypes) {
+	    ActionTypes[ActionTypes["LOGIN"] = 0] = "LOGIN";
+	    ActionTypes[ActionTypes["LOGOUT"] = 1] = "LOGOUT";
+	})(exports.ActionTypes || (exports.ActionTypes = {}));
+	var ActionTypes = exports.ActionTypes;
+	exports.login = function (username) { return ({
+	    type: ActionTypes.LOGIN,
+	    username: username
+	}); };
+	exports.logout = function () { return ({
+	    type: ActionTypes.LOGOUT
+	}); };
+
+
+/***/ },
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	var react_redux_1 = __webpack_require__(17);
-	var actions_1 = __webpack_require__(28);
+	var actions_1 = __webpack_require__(27);
 	var Login_1 = __webpack_require__(29);
-	var mapStateToProps = function (state) { return (state); };
+	var mapStateToProps = function (state) { return state; };
 	var mapDispatchToProps = function (dispatch) { return ({
 	    onLoginClick: function (username) { return dispatch(actions_1.login(username)); },
 	    onLogoutClick: function () { return dispatch(actions_1.logout()); }
@@ -1783,20 +1803,6 @@
 	var App = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(Login_1.default);
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = App;
-
-
-/***/ },
-/* 28 */
-/***/ function(module, exports) {
-
-	"use strict";
-	exports.login = function (username) { return ({
-	    type: 'LOGIN',
-	    username: username
-	}); };
-	exports.logout = function () { return ({
-	    type: 'LOGOUT'
-	}); };
 
 
 /***/ },
