@@ -52,7 +52,7 @@
 	var reducers_1 = __webpack_require__(26);
 	var App_1 = __webpack_require__(27);
 	var store = redux_1.createStore(reducers_1.default);
-	react_dom_1.render(React.createElement(react_redux_1.Provider, {store: store}, React.createElement(App_1.default, null)), document.getElementById('example'));
+	react_dom_1.render(React.createElement(react_redux_1.Provider, {store: store}, React.createElement(App_1.default, null)), document.getElementById('root'));
 
 
 /***/ },
@@ -1750,12 +1750,15 @@
 
 	"use strict";
 	var loggedIn = function (state, action) {
-	    if (state === void 0) { state = false; }
+	    if (state === void 0) { state = { loggedIn: false }; }
 	    switch (action.type) {
 	        case 'LOGIN':
-	            return true;
+	            return {
+	                loggedIn: true,
+	                username: action.username
+	            };
 	        case 'LOGOUT':
-	            return false;
+	            return { loggedIn: false };
 	        default:
 	            return state;
 	    }
@@ -1772,11 +1775,9 @@
 	var react_redux_1 = __webpack_require__(17);
 	var actions_1 = __webpack_require__(28);
 	var Login_1 = __webpack_require__(29);
-	var mapStateToProps = function (state) { return ({
-	    loggedIn: state
-	}); };
+	var mapStateToProps = function (state) { return (state); };
 	var mapDispatchToProps = function (dispatch) { return ({
-	    onLoginClick: function () { return dispatch(actions_1.login()); },
+	    onLoginClick: function (username) { return dispatch(actions_1.login(username)); },
 	    onLogoutClick: function () { return dispatch(actions_1.logout()); }
 	}); };
 	var App = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(Login_1.default);
@@ -1789,8 +1790,9 @@
 /***/ function(module, exports) {
 
 	"use strict";
-	exports.login = function () { return ({
-	    type: 'LOGIN'
+	exports.login = function (username) { return ({
+	    type: 'LOGIN',
+	    username: username
 	}); };
 	exports.logout = function () { return ({
 	    type: 'LOGOUT'
@@ -1804,12 +1806,13 @@
 	"use strict";
 	var React = __webpack_require__(1);
 	var Login = function (_a) {
-	    var loggedIn = _a.loggedIn, onLoginClick = _a.onLoginClick, onLogoutClick = _a.onLogoutClick;
+	    var username = _a.username, loggedIn = _a.loggedIn, onLoginClick = _a.onLoginClick, onLogoutClick = _a.onLogoutClick;
+	    var input;
 	    if (loggedIn) {
-	        return (React.createElement("div", null, React.createElement("span", null, "Logged In"), React.createElement("button", {onClick: onLogoutClick}, "Log Out")));
+	        return (React.createElement("div", null, React.createElement("span", null, username, " Logged In"), React.createElement("button", {onClick: onLogoutClick}, "Log Out")));
 	    }
 	    else {
-	        return (React.createElement("form", null, React.createElement("input", {type: 'text', placeholder: 'Username'}), React.createElement("input", {type: 'password', placeholder: 'Password'}), React.createElement("button", {onClick: onLoginClick}, "Log In")));
+	        return (React.createElement("form", null, React.createElement("input", {type: 'text', placeholder: 'Username', ref: function (node) { return input = node; }}), React.createElement("input", {type: 'password', placeholder: 'Password'}), React.createElement("button", {onClick: function () { return onLoginClick(input.value); }}, "Log In")));
 	    }
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
