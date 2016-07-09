@@ -1,9 +1,15 @@
-const loggedIn = (state = false, action: { type: string }) => {
+const loggedIn = (
+    state: { loggedIn: boolean, username?: string } = { loggedIn: false },
+    action: { type: string, username?: string }
+): { loggedIn: boolean, username?: string } => {
     switch (action.type) {
         case 'LOGIN':
-            return true
+            return {
+                loggedIn: true,
+                username: action.username
+            }
         case 'LOGOUT':
-            return false
+            return { loggedIn: false }
         default:
             return state
     }

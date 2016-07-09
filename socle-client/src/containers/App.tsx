@@ -6,12 +6,12 @@ import { login, logout } from '../actions'
 
 import Login from '../components/Login'
 
-const mapStateToProps = (state: boolean) => ({
-    loggedIn: state
-})
+const mapStateToProps = (state: { loggedIn: boolean, username: string }) => (
+    state
+)
 
 const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
-    onLoginClick: () => dispatch(login()),
+    onLoginClick: (username: string) => dispatch(login(username)),
     onLogoutClick: () => dispatch(logout())
 })
 
