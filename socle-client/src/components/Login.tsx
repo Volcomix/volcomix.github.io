@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-interface Props {
+export interface Props {
     username: string
     loggedIn: boolean
     onLoginClick: (username: string) => void

@@ -1,14 +1,21 @@
+import { ActionTypes, AuthAction } from '../actions'
+
+export interface AuthState {
+    loggedIn: boolean
+    username?: string
+}
+
 const loggedIn = (
-    state: { loggedIn: boolean, username?: string } = { loggedIn: false },
-    action: { type: string, username?: string }
-): { loggedIn: boolean, username?: string } => {
+    state: AuthState = { loggedIn: false },
+    action: AuthAction
+): AuthState => {
     switch (action.type) {
-        case 'LOGIN':
+        case ActionTypes.LOGIN:
             return {
                 loggedIn: true,
                 username: action.username
             }
-        case 'LOGOUT':
+        case ActionTypes.LOGOUT:
             return { loggedIn: false }
         default:
             return state

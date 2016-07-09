@@ -1,16 +1,15 @@
 import * as React from 'react'
-import { Dispatch, Action } from 'redux'
+import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 
-import { login, logout } from '../actions'
+import { AuthAction, login, logout } from '../actions'
+import { AuthState } from '../reducers'
 
-import Login from '../components/Login'
+import Login, { Props } from '../components/Login'
 
-const mapStateToProps = (state: { loggedIn: boolean, username: string }) => (
-    state
-)
+const mapStateToProps = (state: AuthState) => state as Props
 
-const mapDispatchToProps = (dispatch: Dispatch<Action>) => ({
+const mapDispatchToProps = (dispatch: Dispatch<AuthAction>) => ({
     onLoginClick: (username: string) => dispatch(login(username)),
     onLogoutClick: () => dispatch(logout())
 })
