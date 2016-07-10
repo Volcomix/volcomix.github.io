@@ -3,11 +3,12 @@ import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 
 import { AuthAction, login, logout } from '../actions'
-import { AuthState } from '../reducers'
+import { AuthState } from '../reducers/authentication'
+import { AppState } from '../reducers'
 
 import Login, { Props } from '../components/Login'
 
-const mapStateToProps = (state: AuthState) => state as Props
+const mapStateToProps = (state: AppState) => state.authentication as Props
 
 const mapDispatchToProps = (dispatch: Dispatch<AuthAction>) => ({
     onLogin: (username: string) => dispatch(login(username)),

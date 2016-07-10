@@ -1,21 +1,16 @@
-import { ActionTypes, AuthAction } from '../actions'
+import { combineReducers } from 'redux'
+import { routerReducer } from 'react-router-redux'
 
-export interface AuthState {
-    isLoggedIn: boolean
-    username?: string
+import authentication, { AuthState } from './authentication'
+
+export interface AppState {
+    authentication: AuthState,
+    routing: any
 }
 
-const initialState: AuthState = { isLoggedIn: false }
+const rootReducer = combineReducers({
+    authentication,
+    routing: routerReducer
+})
 
-const loggedIn = (state = initialState, action: AuthAction): AuthState => {
-    switch (action.type) {
-        case ActionTypes.LOGIN:
-            return { isLoggedIn: true, username: action.username }
-        case ActionTypes.LOGOUT:
-            return { isLoggedIn: false }
-        default:
-            return state
-    }
-}
-
-export default loggedIn
+export default rootReducer
