@@ -30023,7 +30023,8 @@
 	            var input = event.target;
 	            _this.setState({ username: _this.state.username, password: input.value });
 	        };
-	        this.handleSubmit = function () {
+	        this.handleSubmit = function (event) {
+	            event.preventDefault();
 	            _this.props.onLogin(_this.state.username);
 	            _this.resetForm();
 	        };

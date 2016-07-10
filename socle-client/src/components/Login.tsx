@@ -68,7 +68,8 @@ export default class Login extends React.Component<Props, State> {
         this.setState({ username: this.state.username, password: input.value })
     }
 
-    private handleSubmit = () => {
+    private handleSubmit = (event: React.FormEvent) => {
+        event.preventDefault()
         this.props.onLogin(this.state.username)
         this.resetForm()
     }
