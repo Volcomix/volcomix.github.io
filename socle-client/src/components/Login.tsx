@@ -22,6 +22,12 @@ interface State {
 }
 
 export default class Login extends React.Component<Props, State> {
+
+    context: any
+    static contextTypes: React.ValidationMap<{}> = {
+        muiTheme: React.PropTypes.object.isRequired
+    }
+
     private static initialState = { username: '', password: '' }
 
     constructor(props: Props) {
@@ -67,8 +73,13 @@ export default class Login extends React.Component<Props, State> {
                             targetOrigin={{horizontal: 'right', vertical: 'top'}}
                             anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                         >
-                            <span style={{ padding: 16 }}>
-                                Logged In as {username}
+                            <span
+                                style={{
+                                    padding: 16,
+                                    color: this.context.muiTheme.palette.secondaryTextColor
+                                }}
+                            >
+                                Logged In as <strong>{username}</strong>
                             </span>
                             <Divider />
                             <MenuItem primaryText='Log out' onClick={onLogout} />
