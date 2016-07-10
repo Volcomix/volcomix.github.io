@@ -8,6 +8,7 @@ import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 import IconButton from 'material-ui/IconButton'
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
+import { MuiTheme } from 'material-ui/styles'
 
 export interface Props {
     username: string
@@ -23,7 +24,9 @@ interface State {
 
 export default class Login extends React.Component<Props, State> {
 
-    context: any
+    // secondaryTextColor missing from Typescript Definition file
+    context: { muiTheme: MuiTheme & { palette: { secondaryTextColor: string } } }
+
     static contextTypes: React.ValidationMap<{}> = {
         muiTheme: React.PropTypes.object.isRequired
     }
