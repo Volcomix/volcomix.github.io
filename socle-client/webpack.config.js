@@ -10,9 +10,5 @@ module.exports = {
         loaders: [
             { test: /\.tsx?$/, loader: "ts-loader" }
         ]
-    },
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM"
     }
 }
