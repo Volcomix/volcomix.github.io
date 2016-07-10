@@ -89,12 +89,10 @@ export default class Login extends React.Component<Props, State> {
                             targetOrigin={{horizontal: 'right', vertical: 'top'}}
                             anchorOrigin={{horizontal: 'right', vertical: 'top'}}
                         >
-                            <span
-                                style={{
-                                    padding: 16,
-                                    color: this.context.muiTheme.palette.secondaryTextColor
-                                }}
-                            >
+                            <span style={{
+                                padding: 16,
+                                color: this.context.muiTheme.palette.secondaryTextColor
+                            }}>
                                 Logged In as <strong>{username}</strong>
                             </span>
                             <Divider />
