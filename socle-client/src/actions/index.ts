@@ -10,11 +10,15 @@ export interface AuthAction extends Action {
     username?: string
 }
 
-export const login = (username: string): AuthAction => ({
-    type: ActionTypes.LOGIN,
-    username
-})
+export const login = (username: string): AuthAction => {
+    return {
+        type: ActionTypes.LOGIN,
+        username
+    }
+}
 
-export const logout = (): AuthAction => ({
-    type: ActionTypes.LOGOUT
-})
+export const logout = (): AuthAction => {
+    return {
+        type: ActionTypes.LOGOUT
+    }
+}

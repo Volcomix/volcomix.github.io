@@ -10,11 +10,11 @@ import Login, { Props } from '../components/Login'
 const mapStateToProps = (state: AuthState) => state as Props
 
 const mapDispatchToProps = (dispatch: Dispatch<AuthAction>) => ({
-    onLoginClick: (username: string) => dispatch(login(username)),
-    onLogoutClick: () => dispatch(logout())
+    onLogin: (username: string) => dispatch(login(username)),
+    onLogout: () => dispatch(logout())
 })
 
-const App = connect(
+const App = connect<AuthState, {}, {}>(
     mapStateToProps,
     mapDispatchToProps
 )(Login)

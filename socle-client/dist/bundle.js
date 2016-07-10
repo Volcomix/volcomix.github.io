@@ -1750,16 +1750,14 @@
 
 	"use strict";
 	var actions_1 = __webpack_require__(27);
+	var initialState = { isLoggedIn: false };
 	var loggedIn = function (state, action) {
-	    if (state === void 0) { state = { loggedIn: false }; }
+	    if (state === void 0) { state = initialState; }
 	    switch (action.type) {
 	        case actions_1.ActionTypes.LOGIN:
-	            return {
-	                loggedIn: true,
-	                username: action.username
-	            };
+	            return { isLoggedIn: true, username: action.username };
 	        case actions_1.ActionTypes.LOGOUT:
-	            return { loggedIn: false };
+	            return { isLoggedIn: false };
 	        default:
 	            return state;
 	    }
@@ -1778,13 +1776,17 @@
 	    ActionTypes[ActionTypes["LOGOUT"] = 1] = "LOGOUT";
 	})(exports.ActionTypes || (exports.ActionTypes = {}));
 	var ActionTypes = exports.ActionTypes;
-	exports.login = function (username) { return ({
-	    type: ActionTypes.LOGIN,
-	    username: username
-	}); };
-	exports.logout = function () { return ({
-	    type: ActionTypes.LOGOUT
-	}); };
+	exports.login = function (username) {
+	    return {
+	        type: ActionTypes.LOGIN,
+	        username: username
+	    };
+	};
+	exports.logout = function () {
+	    return {
+	        type: ActionTypes.LOGOUT
+	    };
+	};
 
 
 /***/ },
@@ -1797,8 +1799,8 @@
 	var Login_1 = __webpack_require__(29);
 	var mapStateToProps = function (state) { return state; };
 	var mapDispatchToProps = function (dispatch) { return ({
-	    onLoginClick: function (username) { return dispatch(actions_1.login(username)); },
-	    onLogoutClick: function () { return dispatch(actions_1.logout()); }
+	    onLogin: function (username) { return dispatch(actions_1.login(username)); },
+	    onLogout: function () { return dispatch(actions_1.logout()); }
 	}); };
 	var App = react_redux_1.connect(mapStateToProps, mapDispatchToProps)(Login_1.default);
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -1810,17 +1812,43 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var React = __webpack_require__(1);
-	var Login = function (_a) {
-	    var username = _a.username, loggedIn = _a.loggedIn, onLoginClick = _a.onLoginClick, onLogoutClick = _a.onLogoutClick;
-	    var input;
-	    if (loggedIn) {
-	        return (React.createElement("div", null, React.createElement("span", null, username, " Logged In"), React.createElement("button", {onClick: onLogoutClick}, "Log Out")));
-	    }
-	    else {
-	        return (React.createElement("form", null, React.createElement("input", {type: 'text', placeholder: 'Username', ref: function (node) { return input = node; }}), React.createElement("input", {type: 'password', placeholder: 'Password'}), React.createElement("button", {onClick: function () { return onLoginClick(input.value); }}, "Log In")));
-	    }
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
+	var React = __webpack_require__(1);
+	var Login = (function (_super) {
+	    __extends(Login, _super);
+	    function Login(props) {
+	        var _this = this;
+	        _super.call(this, props);
+	        this.resetValidity = function () {
+	            _this.setState({ isValid: false });
+	        };
+	        this.handleInputChange = function () {
+	            _this.setState({
+	                isValid: !!_this.usernameInput.value && !!_this.passwordInput.value
+	            });
+	        };
+	        this.handleSubmit = function () {
+	            _this.props.onLogin(_this.usernameInput.value);
+	            _this.resetValidity();
+	        };
+	        this.state = { isValid: false };
+	    }
+	    Login.prototype.render = function () {
+	        var _this = this;
+	        var _a = this.props, username = _a.username, isLoggedIn = _a.isLoggedIn, onLogin = _a.onLogin, onLogout = _a.onLogout;
+	        if (isLoggedIn) {
+	            return (React.createElement("div", null, React.createElement("span", null, username, " Logged In"), React.createElement("button", {onClick: onLogout}, "Log Out")));
+	        }
+	        else {
+	            return (React.createElement("form", {onChange: this.handleInputChange, onSubmit: this.handleSubmit}, React.createElement("input", {type: 'text', placeholder: 'Username', ref: function (node) { return _this.usernameInput = node; }}), React.createElement("input", {type: 'password', placeholder: 'Password', ref: function (node) { return _this.passwordInput = node; }}), React.createElement("button", {type: 'submit', disabled: !this.state.isValid}, "Log In")));
+	        }
+	    };
+	    return Login;
+	}(React.Component));
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = Login;
 
