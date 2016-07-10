@@ -3,16 +3,16 @@ module.exports = {
     output: {
         filename: "./dist/bundle.js",
     },
+    devtool: "source-map",
     resolve: {
         extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },
     module: {
         loaders: [
-            { test: /\.tsx?$/, loader: "ts-loader" }
+            { test: /\.tsx?$/, loaders: ["react-hot-loader", "ts-loader"] }
+        ],
+        preLoaders: [
+            { test: /\.js$/, loader: "source-map-loader" }
         ]
-    },
-    externals: {
-        "react": "React",
-        "react-dom": "ReactDOM"
     }
 }

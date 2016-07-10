@@ -1,5 +1,14 @@
 import * as React from 'react'
 
+import AppBar from 'material-ui/AppBar'
+import IconMenu from 'material-ui/IconMenu'
+import Divider from 'material-ui/Divider'
+import MenuItem from 'material-ui/MenuItem'
+import TextField from 'material-ui/TextField'
+import FlatButton from 'material-ui/FlatButton'
+import IconButton from 'material-ui/IconButton'
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert'
+
 export interface Props {
     username: string
     isLoggedIn: boolean
@@ -8,31 +17,39 @@ export interface Props {
 }
 
 interface State {
-    isValid: boolean
+    username: string
+    password: string
 }
 
 export default class Login extends React.Component<Props, State> {
-    private usernameInput: HTMLInputElement
-    private passwordInput: HTMLInputElement
+    private static initialState = { username: '', password: '' }
 
     constructor(props: Props) {
         super(props)
-        this.state = { isValid: false }
+        this.state = Login.initialState
     }
 
-    private resetValidity = () => {
-        this.setState({ isValid: false })
+    private resetForm() {
+        this.setState(Login.initialState)
     }
 
-    private handleInputChange = () => {
-        this.setState({
-            isValid: !!this.usernameInput.value && !!this.passwordInput.value
-        })
+    private isValid() {
+        return this.state.username && this.state.password
+    }
+
+    private handleUsernameChange = (event: React.FormEvent) => {
+        const input = event.target as HTMLInputElement
+        this.setState({ username: input.value, password: this.state.password })
+    }
+    
+    private handlePasswordChange = (event: React.FormEvent) => {
+        const input = event.target as HTMLInputElement
+        this.setState({ username: this.state.username, password: input.value })
     }
 
     private handleSubmit = () => {
-        this.props.onLogin(this.usernameInput.value)
-        this.resetValidity()
+        this.props.onLogin(this.state.username)
+        this.resetForm()
     }
 
     render() {
@@ -40,23 +57,45 @@ export default class Login extends React.Component<Props, State> {
 
         if (isLoggedIn) {
             return (
-                <div>
-                    <span>{username} Logged In</span>
-                    <button onClick={onLogout}>Log Out</button>
-                </div>
+                <AppBar
+                    title='Home'
+                    iconElementRight={
+                        <IconMenu
+                            iconButtonElement={
+                                <IconButton><MoreVertIcon /></IconButton>
+                            }
+                            targetOrigin={{horizontal: 'right', vertical: 'top'}}
+                            anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+                        >
+                            <span style={{ padding: 16 }}>
+                                Logged In as {username}
+                            </span>
+                            <Divider />
+                            <MenuItem primaryText='Log out' onClick={onLogout} />
+                        </IconMenu>
+                    }
+                />
             )
         } else {
             return (
-                <form onChange={this.handleInputChange} onSubmit={this.handleSubmit}>
-                    <input type='text'
-                           placeholder='Username'
-                           ref={node => this.usernameInput = node} />
-                    <input type='password'
-                           placeholder='Password'
-                           ref={node => this.passwordInput = node} />
-                    <button type='submit' disabled={!this.state.isValid}>
-                        Log In
-                    </button>
+                <form onSubmit={this.handleSubmit}>
+                    <TextField
+                        floatingLabelText='Username'
+                        value={this.state.username}
+                        onChange={this.handleUsernameChange}
+                    />
+                    <TextField
+                        floatingLabelText='Password'
+                        value={this.state.password}
+                        onChange={this.handlePasswordChange}
+                        type='password'
+                    />
+                    <FlatButton
+                        label='Log In'
+                        primary={true}
+                        disabled={!this.isValid()}
+                        type='submit'
+                    />
                 </form>
             )
         }
