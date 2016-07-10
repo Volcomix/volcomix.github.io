@@ -10,6 +10,7 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
+import * as config from 'config'
 import rootReducer from './reducers'
 
 import App from './containers/App'
@@ -25,7 +26,7 @@ render(
     <MuiThemeProvider muiTheme={getMuiTheme(baseTheme)}>
         <Provider store={store}>
             <Router history={history}>
-                <Route path='/' component={App} />
+                <Route path={config.basePath} component={App} />
             </Router>
         </Provider>
     </MuiThemeProvider>,

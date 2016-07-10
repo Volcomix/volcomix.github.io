@@ -4,6 +4,9 @@ module.exports = {
         filename: "./dist/bundle.js",
     },
     resolve: {
+        alias: {
+            config$: require.resolve("./config.prod.js")
+        },
         extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },
     module: {
