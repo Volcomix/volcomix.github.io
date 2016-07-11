@@ -8,7 +8,7 @@ export interface AppState {
     routing: any
 }
 
-const rootReducer = combineReducers({
+const rootReducer = combineReducers<AppState>({
     authentication,
     routing: routerReducer
 })

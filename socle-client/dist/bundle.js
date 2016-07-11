@@ -68,7 +68,15 @@
 	// Needed for onTouchTap 
 	// http://stackoverflow.com/a/34015469/988941
 	injectTapEventPlugin();
-	react_dom_1.render(React.createElement(react_redux_1.Provider, {store: store}, React.createElement(MuiThemeProvider_1.default, {muiTheme: getMuiTheme_1.default(lightBaseTheme_1.default)}, React.createElement(react_router_1.Router, {history: history}, React.createElement(react_router_1.Route, {path: '/', component: App_1.default}), React.createElement(react_router_1.Route, {path: '/login', component: Login_1.default})))), document.getElementById('root'));
+	var requireAuth = function (nextState, replace) {
+	    if (!store.getState().authentication.username) {
+	        replace({
+	            pathname: '/login',
+	            state: { nextPathname: nextState.location.pathname }
+	        });
+	    }
+	};
+	react_dom_1.render(React.createElement(react_redux_1.Provider, {store: store}, React.createElement(MuiThemeProvider_1.default, {muiTheme: getMuiTheme_1.default(lightBaseTheme_1.default)}, React.createElement(react_router_1.Router, {history: history}, React.createElement(react_router_1.Route, {path: '/', component: App_1.default, onEnter: requireAuth}), React.createElement(react_router_1.Route, {path: '/login', component: Login_1.default})))), document.getElementById('root'));
 
 
 /***/ },
