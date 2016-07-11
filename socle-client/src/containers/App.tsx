@@ -1,23 +1,28 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
-import { connect } from 'react-redux'
+import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux'
 
 import { AuthAction, login, logout } from '../actions'
 import { AuthState } from '../reducers/authentication'
 import { AppState } from '../reducers'
 
-import Login, { Props } from '../components/Login'
+import Home, { Props } from '../components/Home'
 
-const mapStateToProps = (state: AppState) => state.authentication as Props
+const mapStateToProps: MapStateToProps<Props, {}> = (state: AppState) => {
+    return {
+        username: state.authentication.username
+    } as Props
+}
 
-const mapDispatchToProps = (dispatch: Dispatch<AuthAction>) => ({
-    onLogin: (username: string) => dispatch(login(username)),
-    onLogout: () => dispatch(logout())
-})
+const mapDispatchToProps: MapDispatchToPropsFunction<{}, {}> = (dispatch) => {
+    return {
+        onLogout: () => dispatch(logout())
+    }
+}
 
-const App = connect<AuthState, {}, {}>(
+const App = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Login)
+)(Home)
 
 export default App
