@@ -57,8 +57,6 @@ export default class Login extends React.Component<Props, State> {
     }
 
     render() {
-        const { onLogin } = this.props
-        
         return (
             <form onSubmit={this.handleSubmit} style={styles.form}>
                 <Card>
