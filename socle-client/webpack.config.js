@@ -1,17 +1,34 @@
-module.exports = {
-    entry: "./src/index.tsx",
-    output: {
-        filename: "./dist/bundle.js",
-    },
-    resolve: {
-        alias: {
-            config$: "../config.prod.js"
-        },
-        extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
-    },
-    module: {
-        loaders: [
-            { test: /\.tsx?$/, loader: "ts-loader" }
-        ]
-    }
+const path = require("path")
+const I18nPlugin = require("i18n-webpack-plugin")
+const languages = {
+    "en": null,
+    "fr": require("./locale/fr.json")
 }
+module.exports = Object.keys(languages).map(language => {
+    return {
+        entry: "./src/index.tsx",
+        output: {
+            filename: (
+                language === "en"
+                ? "./dist/bundle.js"
+                : `./dist/${language}.bundle.js`
+            ),
+        },
+        plugins: [
+            new I18nPlugin(
+                languages[language]
+            )
+        ],
+        resolve: {
+            alias: {
+                config$: "../config.prod.js"
+            },
+            extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
+        },
+        module: {
+            loaders: [
+                { test: /\.tsx?$/, loader: "ts-loader" }
+            ]
+        }
+    }
+})

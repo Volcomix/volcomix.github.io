@@ -15,7 +15,7 @@ export interface Props {
 const Home: React.StatelessComponent<Props> = ({ username, onLogout }, context) => {
     return (
         <AppBar
-            title='Home'
+            title={__('Home')}
             iconElementRight={
                 <IconMenu
                     iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
@@ -26,11 +26,11 @@ const Home: React.StatelessComponent<Props> = ({ username, onLogout }, context) 
                         padding: 16,
                         color: context.muiTheme.palette.secondaryTextColor
                     }}>
-                        Logged In as <strong>{username}</strong>
+                        {__('Logged In as')} <strong>{username}</strong>
                     </span>
                     <Divider />
                     <MenuItem
-                        primaryText='Log out'
+                        primaryText={__('Log out')}
                         onClick={e => {
                             e.preventDefault()
                             onLogout()

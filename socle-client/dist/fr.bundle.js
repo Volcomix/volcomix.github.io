@@ -36206,10 +36206,10 @@
 	var more_vert_1 = __webpack_require__(498);
 	var Home = function (_a, context) {
 	    var username = _a.username, onLogout = _a.onLogout;
-	    return (React.createElement(AppBar_1.default, {title: "Home", iconElementRight: React.createElement(IconMenu_1.default, {iconButtonElement: React.createElement(IconButton_1.default, null, React.createElement(more_vert_1.default, null)), targetOrigin: { horizontal: 'right', vertical: 'top' }, anchorOrigin: { horizontal: 'right', vertical: 'top' }}, React.createElement("span", {style: {
+	    return (React.createElement(AppBar_1.default, {title: "Accueil", iconElementRight: React.createElement(IconMenu_1.default, {iconButtonElement: React.createElement(IconButton_1.default, null, React.createElement(more_vert_1.default, null)), targetOrigin: { horizontal: 'right', vertical: 'top' }, anchorOrigin: { horizontal: 'right', vertical: 'top' }}, React.createElement("span", {style: {
 	        padding: 16,
 	        color: context.muiTheme.palette.secondaryTextColor
-	    }}, "Logged In as", " ", React.createElement("strong", null, username)), React.createElement(Divider_1.default, null), React.createElement(MenuItem_1.default, {primaryText: "Log out", onClick: function (e) {
+	    }}, "Identifié en tant que", " ", React.createElement("strong", null, username)), React.createElement(Divider_1.default, null), React.createElement(MenuItem_1.default, {primaryText: "Se déconnecter", onClick: function (e) {
 	        e.preventDefault();
 	        onLogout();
 	    }}))}));
@@ -44415,9 +44415,9 @@
 	            actions = (React.createElement(RefreshIndicator_1.default, {status: 'loading', top: 0, left: 0, style: style.loading}));
 	        }
 	        else {
-	            actions = (React.createElement(FlatButton_1.default, {label: "Log In", primary: true, disabled: !this.isValid(), style: style.input, type: 'submit'}));
+	            actions = (React.createElement(FlatButton_1.default, {label: "Se connecter", primary: true, disabled: !this.isValid(), style: style.input, type: 'submit'}));
 	        }
-	        return (React.createElement("form", {onSubmit: this.handleSubmit, style: style.form}, React.createElement(Card_1.Card, null, React.createElement(Card_1.CardTitle, {title: "Log in to your account"}), React.createElement(Card_1.CardText, null, React.createElement(TextField_1.default, {floatingLabelText: "Username", value: this.state.username, onChange: this.handleUsernameChange, style: style.input}), React.createElement(TextField_1.default, {floatingLabelText: "Password", value: this.state.password, onChange: this.handlePasswordChange, style: style.input, type: 'password'})), React.createElement(Card_1.CardActions, {style: style.actions}, actions))));
+	        return (React.createElement("form", {onSubmit: this.handleSubmit, style: style.form}, React.createElement(Card_1.Card, null, React.createElement(Card_1.CardTitle, {title: "Veuillez vous identifier"}), React.createElement(Card_1.CardText, null, React.createElement(TextField_1.default, {floatingLabelText: "Identifiant", value: this.state.username, onChange: this.handleUsernameChange, style: style.input}), React.createElement(TextField_1.default, {floatingLabelText: "Mot de passe", value: this.state.password, onChange: this.handlePasswordChange, style: style.input, type: 'password'})), React.createElement(Card_1.CardActions, {style: style.actions}, actions))));
 	    };
 	    return Login;
 	}(React.Component));

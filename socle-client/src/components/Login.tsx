@@ -72,7 +72,7 @@ export default class Login extends React.Component<Props, State> {
         } else {
             actions = (
                 <FlatButton
-                    label='Log In'
+                    label={__('Log In')}
                     primary={true}
                     disabled={!this.isValid()}
                     style={style.input}
@@ -83,16 +83,16 @@ export default class Login extends React.Component<Props, State> {
         return (
             <form onSubmit={this.handleSubmit} style={style.form}>
                 <Card>
-                    <CardTitle title="Log in to your account" />
+                    <CardTitle title={__('Log in to your account')} />
                     <CardText>
                         <TextField
-                            floatingLabelText='Username'
+                            floatingLabelText={__('Username')}
                             value={this.state.username}
                             onChange={this.handleUsernameChange}
                             style={style.input}
                         />
                         <TextField
-                            floatingLabelText='Password'
+                            floatingLabelText={__('Password')}
                             value={this.state.password}
                             onChange={this.handlePasswordChange}
                             style={style.input}

@@ -3,3 +3,6 @@
 declare module 'config' {
     export const basePath: string
 }
+
+// Function used by i18n-webpack-plugin
+declare function __(key: string): string
