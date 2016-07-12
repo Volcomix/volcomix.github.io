@@ -10,7 +10,7 @@ const language = "fr"
 module.exports = {
     entry: "./src/index.tsx",
     output: {
-        filename: `./dist/${language}.bundle.js`,
+        filename: `./dist/bundle.js`,
     },
     plugins: [
         new I18nPlugin(
@@ -18,13 +18,6 @@ module.exports = {
         )
     ],
     devServer: {
-        proxy: {
-            '/dist/bundle.js': {
-                bypass: (req, res, proxyOptions) => {
-                    return `/dist/${language}.bundle.js`
-                }
-            }
-        },
         historyApiFallback: true,
     },
     devtool: "source-map",

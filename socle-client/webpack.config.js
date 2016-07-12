@@ -4,12 +4,15 @@ const languages = {
     "en": null,
     "fr": require("./locale/fr.json")
 }
+
+const defaultLanguage = "en"
+
 module.exports = Object.keys(languages).map(language => {
     return {
         entry: "./src/index.tsx",
         output: {
             filename: (
-                language === "en"
+                language === defaultLanguage
                 ? "./dist/bundle.js"
                 : `./dist/${language}.bundle.js`
             ),
