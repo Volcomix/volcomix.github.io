@@ -24,6 +24,9 @@ const style = {
     input: {
         width: '100%'
     },
+    actions: {
+        height: 40
+    },
     loading: {
         position: 'relative',
         margin: 'auto'
@@ -56,19 +59,18 @@ export default class Login extends React.Component<Props, State> {
     }
 
     render() {
-        let action: JSX.Element
+        let actions: JSX.Element
         if (this.props.isAuthenticating) {
-            action = (
+            actions = (
                 <RefreshIndicator
                     status='loading'
                     top={0}
                     left={0}
-                    size={30}
                     style={style.loading}
                 />
             )
         } else {
-            action = (
+            actions = (
                 <FlatButton
                     label='Log In'
                     primary={true}
@@ -97,9 +99,7 @@ export default class Login extends React.Component<Props, State> {
                             type='password'
                         />
                     </CardText>
-                    <CardActions>
-                        {action}
-                    </CardActions>
+                    <CardActions style={style.actions}>{actions}</CardActions>
                 </Card>
             </form>
         )

@@ -44379,6 +44379,9 @@
 	    input: {
 	        width: '100%'
 	    },
+	    actions: {
+	        height: 40
+	    },
 	    loading: {
 	        position: 'relative',
 	        margin: 'auto'
@@ -44407,14 +44410,14 @@
 	        return this.state.username && this.state.password;
 	    };
 	    Login.prototype.render = function () {
-	        var action;
+	        var actions;
 	        if (this.props.isAuthenticating) {
-	            action = (React.createElement(RefreshIndicator_1.default, {status: 'loading', top: 0, left: 0, size: 30, style: style.loading}));
+	            actions = (React.createElement(RefreshIndicator_1.default, {status: 'loading', top: 0, left: 0, style: style.loading}));
 	        }
 	        else {
-	            action = (React.createElement(FlatButton_1.default, {label: 'Log In', primary: true, disabled: !this.isValid(), style: style.input, type: 'submit'}));
+	            actions = (React.createElement(FlatButton_1.default, {label: 'Log In', primary: true, disabled: !this.isValid(), style: style.input, type: 'submit'}));
 	        }
-	        return (React.createElement("form", {onSubmit: this.handleSubmit, style: style.form}, React.createElement(Card_1.Card, null, React.createElement(Card_1.CardTitle, {title: "Log in to your account"}), React.createElement(Card_1.CardText, null, React.createElement(TextField_1.default, {floatingLabelText: 'Username', value: this.state.username, onChange: this.handleUsernameChange, style: style.input}), React.createElement(TextField_1.default, {floatingLabelText: 'Password', value: this.state.password, onChange: this.handlePasswordChange, style: style.input, type: 'password'})), React.createElement(Card_1.CardActions, null, action))));
+	        return (React.createElement("form", {onSubmit: this.handleSubmit, style: style.form}, React.createElement(Card_1.Card, null, React.createElement(Card_1.CardTitle, {title: "Log in to your account"}), React.createElement(Card_1.CardText, null, React.createElement(TextField_1.default, {floatingLabelText: 'Username', value: this.state.username, onChange: this.handleUsernameChange, style: style.input}), React.createElement(TextField_1.default, {floatingLabelText: 'Password', value: this.state.password, onChange: this.handlePasswordChange, style: style.input, type: 'password'})), React.createElement(Card_1.CardActions, {style: style.actions}, actions))));
 	    };
 	    return Login;
 	}(React.Component));
