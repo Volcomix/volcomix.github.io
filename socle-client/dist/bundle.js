@@ -60,7 +60,7 @@
 	var config = __webpack_require__(426);
 	var reducers_1 = __webpack_require__(427);
 	var App_1 = __webpack_require__(430);
-	var Login_1 = __webpack_require__(499);
+	var AppLogin_1 = __webpack_require__(499);
 	var browserHistory = react_router_1.useRouterHistory(history_1.createHistory)({
 	    basename: config.basePath
 	});
@@ -78,7 +78,7 @@
 	        });
 	    }
 	};
-	react_dom_1.render(React.createElement(react_redux_1.Provider, {store: store}, React.createElement(MuiThemeProvider_1.default, {muiTheme: getMuiTheme_1.default(lightBaseTheme_1.default)}, React.createElement(react_router_1.Router, {history: history}, React.createElement(react_router_1.Route, {path: '/', component: App_1.default, onEnter: requireAuth}), React.createElement(react_router_1.Route, {path: '/login', component: Login_1.default})))), document.getElementById('root'));
+	react_dom_1.render(React.createElement(react_redux_1.Provider, {store: store}, React.createElement(MuiThemeProvider_1.default, {muiTheme: getMuiTheme_1.default(lightBaseTheme_1.default)}, React.createElement(react_router_1.Router, {history: history}, React.createElement(react_router_1.Route, {path: '/', component: App_1.default, onEnter: requireAuth}), React.createElement(react_router_1.Route, {path: '/login', component: AppLogin_1.default})))), document.getElementById('root'));
 
 
 /***/ },
@@ -44318,17 +44318,33 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
+	var react_redux_1 = __webpack_require__(185);
+	var actions_1 = __webpack_require__(429);
+	var Login_1 = __webpack_require__(500);
+	var mapDispatchToProps = function (dispatch) {
+	    return {
+	        onLogin: function (username, password) { return dispatch(actions_1.login(username, password)); }
+	    };
+	};
+	var AppLogin = react_redux_1.connect(null, mapDispatchToProps)(Login_1.default);
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = AppLogin;
+
+
+/***/ },
+/* 500 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
 	var __extends = (this && this.__extends) || function (d, b) {
 	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
 	    function __() { this.constructor = d; }
 	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 	};
 	var React = __webpack_require__(1);
-	var react_redux_1 = __webpack_require__(185);
-	var Card_1 = __webpack_require__(500);
-	var TextField_1 = __webpack_require__(512);
-	var FlatButton_1 = __webpack_require__(518);
-	var actions_1 = __webpack_require__(429);
+	var Card_1 = __webpack_require__(501);
+	var TextField_1 = __webpack_require__(513);
+	var FlatButton_1 = __webpack_require__(519);
 	var styles = {
 	    form: {
 	        maxWidth: 300,
@@ -44339,7 +44355,6 @@
 	        width: '100%'
 	    }
 	};
-	var initialState = { username: '', password: '' };
 	var Login = (function (_super) {
 	    __extends(Login, _super);
 	    function Login(props) {
@@ -44355,13 +44370,13 @@
 	        };
 	        this.handleSubmit = function (event) {
 	            event.preventDefault();
-	            _this.props.dispatch(actions_1.login(_this.state.username, _this.state.password));
-	            _this.resetForm();
+	            _this.props.onLogin(_this.state.username, _this.state.password);
+	            _this.resetPassword();
 	        };
-	        this.state = initialState;
+	        this.state = { username: '', password: '' };
 	    }
-	    Login.prototype.resetForm = function () {
-	        this.setState(initialState);
+	    Login.prototype.resetPassword = function () {
+	        this.setState({ username: this.state.username, password: '' });
 	    };
 	    Login.prototype.isValid = function () {
 	        return this.state.username && this.state.password;
@@ -44372,11 +44387,11 @@
 	    return Login;
 	}(React.Component));
 	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = react_redux_1.connect()(Login);
+	exports.default = Login;
 
 
 /***/ },
-/* 500 */
+/* 501 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44386,31 +44401,31 @@
 	});
 	exports.default = exports.CardExpandable = exports.CardActions = exports.CardText = exports.CardMedia = exports.CardTitle = exports.CardHeader = exports.Card = undefined;
 
-	var _Card2 = __webpack_require__(501);
+	var _Card2 = __webpack_require__(502);
 
 	var _Card3 = _interopRequireDefault(_Card2);
 
-	var _CardHeader2 = __webpack_require__(505);
+	var _CardHeader2 = __webpack_require__(506);
 
 	var _CardHeader3 = _interopRequireDefault(_CardHeader2);
 
-	var _CardTitle2 = __webpack_require__(508);
+	var _CardTitle2 = __webpack_require__(509);
 
 	var _CardTitle3 = _interopRequireDefault(_CardTitle2);
 
-	var _CardMedia2 = __webpack_require__(509);
+	var _CardMedia2 = __webpack_require__(510);
 
 	var _CardMedia3 = _interopRequireDefault(_CardMedia2);
 
-	var _CardText2 = __webpack_require__(510);
+	var _CardText2 = __webpack_require__(511);
 
 	var _CardText3 = _interopRequireDefault(_CardText2);
 
-	var _CardActions2 = __webpack_require__(511);
+	var _CardActions2 = __webpack_require__(512);
 
 	var _CardActions3 = _interopRequireDefault(_CardActions2);
 
-	var _CardExpandable2 = __webpack_require__(502);
+	var _CardExpandable2 = __webpack_require__(503);
 
 	var _CardExpandable3 = _interopRequireDefault(_CardExpandable2);
 
@@ -44426,7 +44441,7 @@
 	exports.default = _Card3.default;
 
 /***/ },
-/* 501 */
+/* 502 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44451,7 +44466,7 @@
 
 	var _Paper2 = _interopRequireDefault(_Paper);
 
-	var _CardExpandable = __webpack_require__(502);
+	var _CardExpandable = __webpack_require__(503);
 
 	var _CardExpandable2 = _interopRequireDefault(_CardExpandable);
 
@@ -44624,7 +44639,7 @@
 	exports.default = Card;
 
 /***/ },
-/* 502 */
+/* 503 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44643,11 +44658,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _keyboardArrowUp = __webpack_require__(503);
+	var _keyboardArrowUp = __webpack_require__(504);
 
 	var _keyboardArrowUp2 = _interopRequireDefault(_keyboardArrowUp);
 
-	var _keyboardArrowDown = __webpack_require__(504);
+	var _keyboardArrowDown = __webpack_require__(505);
 
 	var _keyboardArrowDown2 = _interopRequireDefault(_keyboardArrowDown);
 
@@ -44714,7 +44729,7 @@
 	exports.default = CardExpandable;
 
 /***/ },
-/* 503 */
+/* 504 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44751,7 +44766,7 @@
 	exports.default = HardwareKeyboardArrowUp;
 
 /***/ },
-/* 504 */
+/* 505 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44788,7 +44803,7 @@
 	exports.default = HardwareKeyboardArrowDown;
 
 /***/ },
-/* 505 */
+/* 506 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44809,7 +44824,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Avatar = __webpack_require__(506);
+	var _Avatar = __webpack_require__(507);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
@@ -44989,7 +45004,7 @@
 	exports.default = CardHeader;
 
 /***/ },
-/* 506 */
+/* 507 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -44999,7 +45014,7 @@
 	});
 	exports.default = undefined;
 
-	var _Avatar = __webpack_require__(507);
+	var _Avatar = __webpack_require__(508);
 
 	var _Avatar2 = _interopRequireDefault(_Avatar);
 
@@ -45008,7 +45023,7 @@
 	exports.default = _Avatar2.default;
 
 /***/ },
-/* 507 */
+/* 508 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45167,7 +45182,7 @@
 	exports.default = Avatar;
 
 /***/ },
-/* 508 */
+/* 509 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45322,7 +45337,7 @@
 	exports.default = CardTitle;
 
 /***/ },
-/* 509 */
+/* 510 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45512,7 +45527,7 @@
 	exports.default = CardMedia;
 
 /***/ },
-/* 510 */
+/* 511 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45611,7 +45626,7 @@
 	exports.default = CardText;
 
 /***/ },
-/* 511 */
+/* 512 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45715,7 +45730,7 @@
 	exports.default = CardActions;
 
 /***/ },
-/* 512 */
+/* 513 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -45725,7 +45740,7 @@
 	});
 	exports.default = undefined;
 
-	var _TextField = __webpack_require__(513);
+	var _TextField = __webpack_require__(514);
 
 	var _TextField2 = _interopRequireDefault(_TextField);
 
@@ -45734,7 +45749,7 @@
 	exports.default = _TextField2.default;
 
 /***/ },
-/* 513 */
+/* 514 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -45777,19 +45792,19 @@
 
 	var _deprecatedPropType2 = _interopRequireDefault(_deprecatedPropType);
 
-	var _EnhancedTextarea = __webpack_require__(514);
+	var _EnhancedTextarea = __webpack_require__(515);
 
 	var _EnhancedTextarea2 = _interopRequireDefault(_EnhancedTextarea);
 
-	var _TextFieldHint = __webpack_require__(515);
+	var _TextFieldHint = __webpack_require__(516);
 
 	var _TextFieldHint2 = _interopRequireDefault(_TextFieldHint);
 
-	var _TextFieldLabel = __webpack_require__(516);
+	var _TextFieldLabel = __webpack_require__(517);
 
 	var _TextFieldLabel2 = _interopRequireDefault(_TextFieldLabel);
 
-	var _TextFieldUnderline = __webpack_require__(517);
+	var _TextFieldUnderline = __webpack_require__(518);
 
 	var _TextFieldUnderline2 = _interopRequireDefault(_TextFieldUnderline);
 
@@ -46308,7 +46323,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 514 */
+/* 515 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46536,7 +46551,7 @@
 	exports.default = EnhancedTextarea;
 
 /***/ },
-/* 515 */
+/* 516 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46617,7 +46632,7 @@
 	exports.default = TextFieldHint;
 
 /***/ },
-/* 516 */
+/* 517 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46734,7 +46749,7 @@
 	exports.default = TextFieldLabel;
 
 /***/ },
-/* 517 */
+/* 518 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46870,7 +46885,7 @@
 	exports.default = TextFieldUnderline;
 
 /***/ },
-/* 518 */
+/* 519 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46880,7 +46895,7 @@
 	});
 	exports.default = undefined;
 
-	var _FlatButton = __webpack_require__(519);
+	var _FlatButton = __webpack_require__(520);
 
 	var _FlatButton2 = _interopRequireDefault(_FlatButton);
 
@@ -46889,7 +46904,7 @@
 	exports.default = _FlatButton2.default;
 
 /***/ },
-/* 519 */
+/* 520 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -46922,7 +46937,7 @@
 
 	var _EnhancedButton2 = _interopRequireDefault(_EnhancedButton);
 
-	var _FlatButtonLabel = __webpack_require__(520);
+	var _FlatButtonLabel = __webpack_require__(521);
 
 	var _FlatButtonLabel2 = _interopRequireDefault(_FlatButtonLabel);
 
@@ -47206,7 +47221,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 520 */
+/* 521 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

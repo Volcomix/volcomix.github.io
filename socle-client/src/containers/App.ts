@@ -1,9 +1,6 @@
-import * as React from 'react'
-import { Dispatch } from 'redux'
 import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux'
 
-import { AuthAction, login, logout } from '../actions'
-import { AuthState } from '../reducers/authentication'
+import { logout } from '../actions'
 import { AppState } from '../reducers'
 
 import Home, { Props } from '../components/Home'

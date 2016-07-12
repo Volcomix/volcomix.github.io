@@ -14,9 +14,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 import * as config from 'config'
 import rootReducer, { AppState } from './reducers'
-
 import App from './containers/App'
-import Login from './containers/Login'
+import AppLogin from './containers/AppLogin'
 
 const browserHistory = useRouterHistory(createHistory)({
     basename: config.basePath
@@ -46,7 +45,7 @@ render(
         <MuiThemeProvider muiTheme={getMuiTheme(baseTheme)}>
             <Router history={history}>
                 <Route path='/' component={App} onEnter={requireAuth} />
-                <Route path='/login' component={Login} />
+                <Route path='/login' component={AppLogin} />
             </Router>
         </MuiThemeProvider>
     </Provider>,
