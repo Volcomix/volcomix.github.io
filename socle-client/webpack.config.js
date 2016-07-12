@@ -5,7 +5,7 @@ module.exports = {
     },
     resolve: {
         alias: {
-            config$: require.resolve("./config.prod.js")
+            config$: "../config.prod.js"
         },
         extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },

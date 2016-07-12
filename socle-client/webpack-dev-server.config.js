@@ -9,7 +9,7 @@ module.exports = {
     devtool: "source-map",
     resolve: {
         alias: {
-            config$: require.resolve("./config.dev.js")
+            config$: "../config.dev.js"
         },
         extensions: ["", ".webpack.js", ".web.js", ".ts", ".tsx", ".js"]
     },
