@@ -2,9 +2,8 @@ import { Action, Dispatch } from 'redux'
 import { push } from 'react-router-redux'
 
 export enum ActionTypes {
-    LOGIN,
+    LOGIN_REQUEST,
     LOGGEDIN,
-    LOGOUT,
     LOGGEDOUT
 }
 
@@ -14,7 +13,13 @@ export interface AuthAction extends Action {
     password?: string
 }
 
-export const loggedIn = (username: string): AuthAction => {
+const loginRequest = () => {
+    return {
+        type: ActionTypes.LOGIN_REQUEST
+    }
+}
+
+const loggedIn = (username: string): AuthAction => {
     return {
         type: ActionTypes.LOGGEDIN,
         username
@@ -23,6 +28,7 @@ export const loggedIn = (username: string): AuthAction => {
 
 export const login = (username: string, password: string) => {
     return (dispatch: Dispatch<any>) => {
+        dispatch(loginRequest())
         setTimeout(() => {
             dispatch(loggedIn(username))
             dispatch(push('/'))
@@ -30,7 +36,7 @@ export const login = (username: string, password: string) => {
     }
 }
 
-export const loggedOut = () => {
+const loggedOut = () => {
     return {
         type: ActionTypes.LOGGEDOUT
     }

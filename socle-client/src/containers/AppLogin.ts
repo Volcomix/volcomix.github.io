@@ -1,16 +1,26 @@
-import { connect, MapDispatchToPropsFunction } from 'react-redux'
+import { connect, MapStateToProps, MapDispatchToPropsFunction } from 'react-redux'
 
 import { login } from '../actions'
-import Login from '../components/Login'
+import { AppState } from '../reducers'
+
+import Login, { Props } from '../components/Login'
+
+const mapStateToProps: MapStateToProps<Props, {}> = (state: AppState) => {
+    return {
+        isAuthenticating: state.authentication.isAuthenticating
+    } as Props
+}
 
 const mapDispatchToProps: MapDispatchToPropsFunction<{}, {}> = (dispatch) => {
     return {
-        onLogin: (username: string, password: string) => dispatch(login(username, password))
+        onLogin: (username: string, password: string) => {
+            dispatch(login(username, password))
+        }
     }
 }
 
 const AppLogin = connect(
-    null,
+    mapStateToProps,
     mapDispatchToProps
 )(Login)
 

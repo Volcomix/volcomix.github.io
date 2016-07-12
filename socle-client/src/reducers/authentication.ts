@@ -1,15 +1,27 @@
 import { ActionTypes, AuthAction } from '../actions'
 
 export interface AuthState {
+    isAuthenticating: boolean
     username?: string
 }
 
-const authentication = (state: AuthState = {}, action: AuthAction): AuthState => {
+const initialState: AuthState = {
+    isAuthenticating: false
+}
+
+const authentication = (state = initialState, action: AuthAction): AuthState => {
     switch (action.type) {
+        case ActionTypes.LOGIN_REQUEST:
+            return {
+                isAuthenticating: true
+            }
         case ActionTypes.LOGGEDIN:
-            return { username: action.username }
+            return {
+                username: action.username,
+                isAuthenticating: false
+            }
         case ActionTypes.LOGGEDOUT:
-            return {}
+            return initialState
         default:
             return state
     }

@@ -13,7 +13,9 @@ const mapStateToProps: MapStateToProps<Props, {}> = (state: AppState) => {
 
 const mapDispatchToProps: MapDispatchToPropsFunction<{}, {}> = (dispatch) => {
     return {
-        onLogout: () => dispatch(logout())
+        onLogout: () => {
+            dispatch(logout())
+        }
     }
 }
 
