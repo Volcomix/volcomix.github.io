@@ -1,11 +1,16 @@
 import * as React from 'react'
+import { Dispatch } from 'redux'
+import { connect } from 'react-redux'
+import { push } from 'react-router-redux'
 
 import {Card, CardActions, CardTitle, CardText} from 'material-ui/Card'
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton'
 
-export interface Props {
-    onLogin: (username: string) => void
+import { login, AuthAction } from '../actions'
+
+interface Props {
+    dispatch: Dispatch<{}>
 }
 
 interface State {
@@ -26,7 +31,7 @@ const styles = {
 
 const initialState = { username: '', password: '' }
 
-export default class Login extends React.Component<Props, State> {
+class Login extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
         this.state = initialState
@@ -52,7 +57,7 @@ export default class Login extends React.Component<Props, State> {
 
     private handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
-        this.props.onLogin(this.state.username)
+        this.props.dispatch(login(this.state.username, this.state.password))
         this.resetForm()
     }
 
@@ -90,3 +95,5 @@ export default class Login extends React.Component<Props, State> {
         )
     }
 }
+
+export default connect()(Login)

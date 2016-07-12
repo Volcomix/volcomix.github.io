@@ -1,10 +1,11 @@
 import * as React from 'react'
 import { render } from 'react-dom'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 import { Router, Route, useRouterHistory, EnterHook } from 'react-router'
 import { createHistory } from 'history'
-import { syncHistoryWithStore } from 'react-router-redux'
+import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
 import * as injectTapEventPlugin from 'react-tap-event-plugin'
 
 import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme'
@@ -15,12 +16,16 @@ import * as config from 'config'
 import rootReducer, { AppState } from './reducers'
 
 import App from './containers/App'
-import Login from './components/Login'
+import Login from './containers/Login'
 
-const store = createStore<AppState>(rootReducer)
 const browserHistory = useRouterHistory(createHistory)({
     basename: config.basePath
 })
+const historyMiddleware = routerMiddleware(browserHistory)
+const store = createStore<AppState>(
+    rootReducer,
+    applyMiddleware(historyMiddleware, thunk)
+)
 const history = syncHistoryWithStore(browserHistory, store)
 
 // Needed for onTouchTap 

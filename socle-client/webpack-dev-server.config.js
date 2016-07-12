@@ -3,6 +3,9 @@ module.exports = {
     output: {
         filename: "./dist/bundle.js",
     },
+    devServer: {
+        historyApiFallback: true,
+    },
     devtool: "source-map",
     resolve: {
         alias: {

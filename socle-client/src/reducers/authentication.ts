@@ -6,9 +6,9 @@ export interface AuthState {
 
 const authentication = (state: AuthState = {}, action: AuthAction): AuthState => {
     switch (action.type) {
-        case ActionTypes.LOGIN:
+        case ActionTypes.LOGGEDIN:
             return { username: action.username }
-        case ActionTypes.LOGOUT:
+        case ActionTypes.LOGGEDOUT:
             return {}
         default:
             return state
