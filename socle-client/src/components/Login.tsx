@@ -30,10 +30,6 @@ export default class Login extends React.Component<Props, State> {
         this.state = { username: '', password: '' }
     }
 
-    private resetPassword() {
-        this.setState({ username: this.state.username, password: '' })
-    }
-
     private isValid() {
         return this.state.username && this.state.password
     }
@@ -51,7 +47,6 @@ export default class Login extends React.Component<Props, State> {
     private handleSubmit = (event: React.FormEvent) => {
         event.preventDefault()
         this.props.onLogin(this.state.username, this.state.password)
-        this.resetPassword()
     }
 
     render() {
