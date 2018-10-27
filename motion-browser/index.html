@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Motion Detection</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="Processor.js"></script>
+</head>
+
+<body>
+  <video id="dogs" src="Pexels Videos 2627.mp4" controls width="800"></video>
+  <video id="chars" src="Cars On The Road.mp4" controls width="800"></video>
+
+  <script>
+    new Processor(
+      document.getElementById('dogs'),
+      {
+        zeroMotionBias: 12,
+        neighborsThreshold: 8,
+        showBlocks: true,
+        showBlocksBorders: false,
+        showSpeed: true,
+        showLabels: false,
+        showColors: true
+      }
+    ).doLoad()
+    new Processor(
+      document.getElementById('chars'),
+      {
+        zeroMotionBias: 4,
+        neighborsThreshold: 2,
+        showBlocks: false,
+        showBlocksBorders: true,
+        showSpeed: false,
+        showLabels: false,
+        showColors: true
+      }
+    ).doLoad()
+  </script>
+</body>
+
+</html>
