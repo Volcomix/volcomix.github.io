@@ -7,6 +7,7 @@ body {
   margin: 0;
   font-family: "Roboto", "Helvetica", sans-serif;
   background-color: rgba(0, 0, 0, 0.04);
+  display: flex;
 }
 
 nav {
@@ -14,12 +15,14 @@ nav {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  align-content: space-evenly;
 }
 
 a {
+  flex: 1;
   position: relative;
   background-color: white;
-  width: 400px;
+  min-width: 400px;
   height: 250px;
   overflow: hidden;
   margin: 8px;
