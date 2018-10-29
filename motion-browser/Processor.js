@@ -80,8 +80,8 @@ class Processor {
 
   startTimer() {
     const rect = this.video.getBoundingClientRect()
-    this.canvas.style.left = `${rect.left}px`
-    this.canvas.style.top = `${rect.top}px`
+    this.canvas.style.left = `${rect.left + window.scrollX}px`
+    this.canvas.style.top = `${rect.top + window.scrollY}px`
     this.canvas.style.width = `${rect.width}px`
     this.canvas.style.height = `${rect.height}px`
     this.canvas.width = this.width
